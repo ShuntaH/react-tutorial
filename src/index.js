@@ -19,7 +19,7 @@ import './index.css';
 //             <button
 //                 className="square"
 //                 onClick={() => {
-//                             this.props.onClick({value: '早姫'})
+//                             this.props.onClick({value: 'プレイヤー'})
 //                             console.log('メガハイボールください')}}>
 //                 <div style={{fontSize: '2px'}}>
 //                     {this.props.value}
@@ -36,7 +36,9 @@ function Square(props) {
             className="square"
             onClick={props.onClick}
         >
-            {props.value}
+            <div style={{fontSize: '2px'}}>
+                {props.value}
+            </div>
         </button>
     )
 }
@@ -57,7 +59,7 @@ class Board extends React.Component {
             return;
         }
 
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        squares[i] = this.state.xIsNext ? 'プレイヤー1' : 'プレイヤー2';
         this.setState({
             squares: squares,
             xIsNext: !this.state.xIsNext
@@ -77,9 +79,9 @@ class Board extends React.Component {
         const winner = calculateWinner(this.state.squares);
         let status;
         if(winner){
-            status = `Winner: ${winner}`
+            status = `${winner}が勝ちました`
         } else {
-            status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+            status = `次は${this.state.xIsNext ? 'プレイヤー1' : 'プレイヤー2'}のターンです`;
 
         }
         return (
